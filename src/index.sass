@@ -20,6 +20,7 @@ body
   height: 12px
   border: 1px solid black
   border-radius: 50%
+  flex: 0 0 12px
   margin-right: 12px
   &--lightgreen
     background-color: lightgreen
@@ -98,8 +99,6 @@ body
 .event
   position: absolute
   width: 90%
-  height: calc(29px* 23)
-  background-color: rgba(243, 240, 83, 0.75)
   top: 0px
   left: 0px
   padding: 4px
@@ -113,3 +112,9 @@ body
 
 .content
   font-size: 12px
+
+.event__comment
+  line-height: 1.5
+  overflow: hidden
+  text-overflow: ellipsis
+  max-height: 95%

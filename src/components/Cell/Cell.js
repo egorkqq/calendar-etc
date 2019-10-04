@@ -1,16 +1,27 @@
 import React from 'react';
 import Event from '../Event';
+import moment from 'moment';
 
-const Cell = ({ minute, isInfo }) => {
+const renderEvent = (minute, event) => {
+  return (
+    minute.isSame(event.start, 'minute') &&
+    minute.isSame(event.start, 'hour') && <Event event={event} />
+  );
+};
+
+const Cell = ({ minute, isInfo, event }) => {
   return (
     <div className="schedule__cell">
-      <div className="schedule__cell-field">{isInfo && minute.format('h:mma')}</div>
+      <div className="schedule__cell-field">
+        {isInfo && minute.format('h:mma')}
+        {event && renderEvent(minute.clone(), event)}
+      </div>
       <div className="schedule__cell-separator"></div>
       <div className="schedule__cell-field">
-        {minute.format('h:mm') === '8:30' && !isInfo && <Event />}
+        {event && renderEvent(minute.clone().add(15, 'm'), event)}
       </div>
     </div>
   );
 };
 
-export default Cell;
+export default React.memo(Cell);
