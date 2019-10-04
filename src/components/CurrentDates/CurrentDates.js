@@ -1,12 +1,13 @@
 import React from 'react';
 import { Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import generateWeek from '../../utils/generateWeek';
+import generateWeekDates from '../../utils/generateWeekDates';
 
 const CurrentDates = ({ data }) => {
+  const weekString = generateWeekDates(data);
   return (
-    <Header textAlign="center" size="huge" color="black">
-      {generateWeek(data)}
+    <Header textAlign="center" size="huge" color="black" className="dates">
+      {weekString}
     </Header>
   );
 };

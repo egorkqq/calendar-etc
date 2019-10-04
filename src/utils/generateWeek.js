@@ -1,16 +1,17 @@
 import moment from 'moment';
 
 export default data => {
-  const { start, end } = data[0];
+  const { start } = data[0];
+  const days = [];
 
-  const startOfWeek = moment(start)
-    .clone()
-    .startOf('week')
-    .format('MMMM D — ');
-  const endOfWeek = moment(start)
-    .clone()
-    .endOf('week')
-    .format('D, YYYY');
+  for (let i = 0; i < 7; i += 1) {
+    days.push({
+      day: moment(start)
+        .clone()
+        .startOf('week')
+        .add(i, 'days')
+    });
+  }
 
-  return startOfWeek + endOfWeek;
+  return days;
 };
