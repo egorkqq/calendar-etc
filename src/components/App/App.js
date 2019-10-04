@@ -7,7 +7,7 @@ import getEvents from '../../actions';
 function App({ dispatch, loading, error }) {
   React.useEffect(() => {
     dispatch(getEvents());
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return (

@@ -8,11 +8,13 @@ const Calendar = () => {
   return (
     <Segment>
       <Grid divided columns={2}>
-        <Grid.Column width={12}>
+        <Grid.Column largeScreen={12} widescreen={12} tablet={16}>
           <CurrentDates />
-          <Schedule />
+          <div className="schedule__wrapper">
+            <Schedule />
+          </div>
         </Grid.Column>
-        <Grid.Column width={4}>
+        <Grid.Column largeScreen={4} widescreen={4} tablet={16}>
           <Legend />
         </Grid.Column>
       </Grid>

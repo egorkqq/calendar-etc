@@ -1,6 +1,5 @@
 import React from 'react';
 import Event from '../Event';
-import moment from 'moment';
 
 const renderEvent = (minute, event) => {
   return (
@@ -16,7 +15,7 @@ const Cell = ({ minute, isInfo, event }) => {
         {isInfo && minute.format('h:mma')}
         {event && renderEvent(minute.clone(), event)}
       </div>
-      <div className="schedule__cell-separator"></div>
+      <div className="schedule__cell-separator" />
       <div className="schedule__cell-field">
         {event && renderEvent(minute.clone().add(15, 'm'), event)}
       </div>

@@ -13,7 +13,8 @@ import './index.sass';
 const sagaMiddleware = createSagaMiddleware();
 
 const logMiddleware = ({ getState }) => next => action => {
-  console.log(action.type, getState());
+  // eslint-disable-next-line no-console
+  if (process.env.NODE_ENV === 'development') console.log(action.type, getState());
   return next(action);
 };
 

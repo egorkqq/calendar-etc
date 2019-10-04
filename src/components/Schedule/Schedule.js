@@ -9,9 +9,6 @@ const Schedule = ({ data }) => {
   const renderCells = (day, type) => {
     const cells = [];
     const firstHour = getFirstHour(data);
-    const isEvent = () => {
-      data.forEach(event => {});
-    };
     for (let i = 0; i < 48; i += 1) {
       cells.push(
         day
@@ -24,7 +21,7 @@ const Schedule = ({ data }) => {
     }
 
     if (type === 'info') {
-      return cells.map(cell => <Cell isInfo minute={cell} />);
+      return cells.map(cell => <Cell key={cell.format('x')} isInfo minute={cell} />);
     }
     return cells.map(cell => {
       let event = false;
@@ -32,7 +29,7 @@ const Schedule = ({ data }) => {
         if (cell.isSame(el.start, 'day')) event = el;
       });
 
-      return <Cell event={event} minute={cell} />;
+      return <Cell key={cell.format('x')} event={event} minute={cell} />;
     });
   };
   const renderColumn = ({ day }, idx) => {
@@ -49,13 +46,14 @@ const Schedule = ({ data }) => {
     return (
       <div key={idx} className="schedule__column">
         <div className="schedule__column-day-name">{day.format('ddd M/D')}</div>
-        <div className="schedule__column-all-day"></div>
+        <div className="schedule__column-all-day" />
         {renderCells(day, 'simple')}
       </div>
     );
   };
 
   const days = [{ day: moment() }, ...generateWeek(data)];
+
   return <div className="schedule__container">{days.map(renderColumn)}</div>;
 };
 
