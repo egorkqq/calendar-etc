@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "REACT_APP_APIBASE": "https://api.myjson.com/bins/1g50kv"
+    }
+  }
+}

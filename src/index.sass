@@ -63,12 +63,16 @@ body
 
 .schedule__cell
   width: 100%
-  min-height: 41px
+  min-height: 28px
   display: flex
   flex-direction: column
   align-items: flex-end
   border: 1px solid #efefef
   border-top: none
+  min-width: 40px
+  padding: 4px
+  position: relative
+  text-align: right
 
 .schedule__column-all-day
   width: 100%
@@ -91,15 +95,11 @@ body
 
 .schedule__cell-field
   height: 28px
-  min-width: 40px
-  padding: 4px
-  position: relative
-  width: 100%
-  text-align: right
 
 .event
   position: absolute
   width: 90%
+  height: 104%
   top: 0px
   left: 0px
   padding: 4px
@@ -119,3 +119,7 @@ body
   overflow: hidden
   text-overflow: ellipsis
   max-height: 95.5%
+
+.event__content
+  position: absolute
+  z-index: 3000

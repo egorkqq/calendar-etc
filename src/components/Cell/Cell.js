@@ -1,24 +1,19 @@
 import React from 'react';
 import Event from '../Event';
 
-const renderEvent = (minute, event) => {
-  return (
-    minute.isSame(event.start, 'minute') &&
-    minute.isSame(event.start, 'hour') && <Event event={event} />
-  );
-};
-
 const Cell = ({ minute, isInfo, event }) => {
   return (
     <div className="schedule__cell">
-      <div className="schedule__cell-field">
-        {isInfo && minute.format('h:mma')}
-        {event && renderEvent(minute.clone(), event)}
-      </div>
-      <div className="schedule__cell-separator" />
-      <div className="schedule__cell-field">
-        {event && renderEvent(minute.clone().add(15, 'm'), event)}
-      </div>
+      {isInfo && minute.get('minute') % 30 === 0 && minute.format('h:mma')}
+      {event && (
+        <Event
+          withContent={
+            minute.clone().isSame(event.start, 'minute') &&
+            minute.clone().isSame(event.start, 'hour')
+          }
+          event={event}
+        />
+      )}
     </div>
   );
 };

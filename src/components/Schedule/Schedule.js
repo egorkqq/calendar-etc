@@ -1,37 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 import getFirstHour from '../../utils/getFirstHour';
 import generateWeek from '../../utils/generateWeek';
 import Cell from '../Cell';
+
+const moment = extendMoment(Moment);
 
 const Schedule = ({ data }) => {
   const renderCells = (day, type) => {
     const cells = [];
     const firstHour = getFirstHour(data);
-    for (let i = 0; i < 48; i += 1) {
+    for (let i = 0; i < 96; i += 1) {
       cells.push(
         day
           .clone()
 
           .set('minute', 0)
           .set('hour', firstHour)
-          .add(30 * i, 'minutes')
+          .add(15 * i, 'minutes')
       );
     }
 
     if (type === 'info') {
       return cells.map(cell => <Cell key={cell.format('x')} isInfo minute={cell} />);
     }
+
     return cells.map(cell => {
       let event = false;
       data.forEach(el => {
-        if (cell.isSame(el.start, 'day')) event = el;
+        const range = moment.range(moment(el.start), moment(el.end));
+        if (range.contains(cell)) event = el;
       });
 
       return <Cell key={cell.format('x')} event={event} minute={cell} />;
     });
   };
+
   const renderColumn = ({ day }, idx) => {
     if (idx === 0) {
       return (
