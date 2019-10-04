@@ -10,7 +10,7 @@
 
 ## Посмотреть готовое приложение:
 
-https://calendar-etc.egorkqq.now.sh/
+https://calendar-etc-bbb7uwq1d.now.sh/
 
 ## Развернуть приложение локально:
 
